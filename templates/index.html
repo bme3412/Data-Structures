@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Two Number Sum</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+    <h1>Two Number Sum</h1>
+
+    <div>
+        <label for="array">Enter an array of integers (comma-separated):</label>
+        <input type="text" id="array">
+    </div>
+    <div>
+        <label for="target_sum">Enter the target sum:</label>
+        <input type="text" id="target_sum">
+    </div>
+    <button onclick="solve()">Solve</button>
+
+    <h3>Result: <span id="result"></span></h3>
+    <h3>Steps:</h3>
+    <ul id="steps"></ul>
+
+    <script>
+        function solve() {
+            const array = $('#array').val();
+            const target_sum = $('#target_sum').val();
+            const jsonData = JSON.stringify({ 'array': array, 'target_sum': target_sum });
+
+            $.ajax({
+                url: '/solve',
+                type: 'POST',
+                data: jsonData,
+                contentType: 'application/json; charset=utf-8',
+                success: function(data) {
+                    $('#result').text(data.result);
+                    $('#steps').empty();
+                    data.steps.forEach(step => {
+                        $('#steps').append(`<li>${step}</li>`);
+                    });
+                }
+            });
+        }
+    </script>
+    <img src="static/images/twoNumberSumPrompt.png" alt="prompt">
+    <img src="static/images/twoNumberSumSolution1.png" alt="solution1">
+    <img src="static/images/twoNumberSumSolution1docstrings.png" alt="prompt">
+</body>
+</html>
