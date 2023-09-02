@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Two Number Sum</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Two Number Sum</h1>
+    <form id="two-number-form">
+        <label for="array">Enter array (,):</label>
+        <input type="text" id="array" name="array" required><br>
+        <br>
+        <label for="target_sum">Enter target sum:</label>
+        <input type="number" id="target_sum" name="target_sum" required><br>
+        <br>
+        <button type="submit">Solve</button>
+    </form>
+    <div id="result"></div>
+    <div id="steps"></div>
+    <br>
+    <a href="/">Go back to Home</a>
+
+    <script>
+        $(document).ready(function() {
+            $("#two-number-form").submit(function(event) {
+                event.preventDefault();
+                const array = $("#array").val();
+                const target_sum = $("#target_sum").val();
+
+                $.ajax({
+                    url: '/twoNumberSumSolve',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ array, target_sum }),
+                    success: function(response) {
+                        $("#result").html("Result: " + response.result);
+                        $("#steps").html("Steps: " + response.steps.join(", "));
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+    <hr>
+    <img class="rounded-image" src="/../static/img/twoNumberSumPrompt.png" alt=""><br>
+    <img class="rounded-image" src="/../static/img/twoNumberSumSolution1.png" alt=""><br>
+    <img class="rounded-image" src="/../static/img/twoNumberSumSolution1docstrings.png" alt="">
+</body>
+</html>
