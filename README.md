@@ -6,3 +6,4 @@
 ### Day 3 - Sorting Algos (Bubble, Insert, Selection)
 ### Day 4 - Strings
 ### Day 5 - String Manipulation
+### Day 6 - Week 1 Practice Problems
