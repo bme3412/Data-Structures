@@ -12,3 +12,4 @@
 ### Day 9 - Sliding Window Arrays
 ### Day 10 - String Parsing and Formatting
 ### Day 11 - String Algorithms
+### Day 12 - Review of Weeks 1 - 2
